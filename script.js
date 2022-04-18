@@ -153,19 +153,31 @@ const colors = [
 	'Ivory',
 	'White'
 ];
-
+const primaryColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
 
 function selectColor() {
 
-	if (colors.includes(inputText.value)) {
+	if (primaryColors.includes(inputText.value)) {
 		square.style.backgroundColor = inputText.value;
 	} else {
-		inputText.value = 'Go  => console';
-		console.log(colors);
+		inputText.value = null;
+		inputText.placeholder = 'это не цвет радуги';
+		setTimeout(() => {
+			inputText.placeholder = 'только 7 цветов радуги.';
+		}, 2000);
+
+		console.log(primaryColors);
 	}
 	setTimeout(() => {
 		inputText.value = null;
 	}, 2000);
+}
+
+function enterKey(event) {
+	if (event.key === "Enter") {
+		event.preventDefault();
+		selectColor();
+	}
 }
 
 function stealth() {
@@ -190,14 +202,15 @@ function funStack(event) {
 		link.style.color = colors[`${event.target.value}`];
 	}
 
-	inputRange.max = '140';
-	inputRange.defaultValue = '70';
-
 	getRadius(event);
 	forFun(event);
 }
 
 
-btnColSelect.addEventListener('click', selectColor);
+inputRange.max = '140';
+inputRange.defaultValue = '70';
+inputText.placeholder = 'только 7 цветов радуги.';
+btnColSelect.addEventListener('click', selectColor); //выбрать цвет через кнопку
+inputText.addEventListener('keydown', enterKey); //теперь можно и по ентеру цвет выбирать, 4fun)
 btnStealth.addEventListener('click', stealth);
 inputRange.addEventListener('input', funStack);

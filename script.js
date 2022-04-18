@@ -181,7 +181,8 @@ function funStack(event) {
 		span.textContent = event.target.value;
 		circle.style.cssText = 'width:' +
 			`${event.target.value}` + '%;height:' +
-			`${event.target.value}` + '%;';
+			`${event.target.value}` + '%;' +
+			'max-width:100%;max-height:100%;';
 	}
 
 	function forFun(event) {
